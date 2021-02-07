@@ -1,0 +1,117 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+@model CoffeeShopLab2.Models.CoffeeShop.AddUserFormViewModel
+
+<link rel="stylesheet" href="~/css/StyleSheet.css" type="text/css" />
+<form asp-controller="CoffeeShop" asp-action="FormResult" method="post">
+
+
+    <div class="alert alert-info" role="alert">
+        NOTE: You may only submit for registration if following conditions are met.
+
+        <ul>
+            <li>Name may have letters only.</li>
+            <li>Email address must be valid (i.e. contenthere@domain.[org, com, net, etc]).</li>
+            <li>Password must match password confirmation.</li>
+            <li>Phone number must only contain numbers, 10 digits including area code.</li>
+            @*<li>Funds must be a whole number.</li>*@
+            <li>No fields may be empty</li>
+        </ul>
+    </div>
+
+    <br />
+
+    <h3>NAME</h3>
+    <fieldset>
+
+
+        <div class="form-group">
+            <label asp-for="FirstName">FirstName:</label>
+            <input class="form-control" asp-for="FirstName" placeholder="Enter your First Name">
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-group">
+            <label asp-for="LastName">LastName:</label>
+            <input class="form-control" asp-for="LastName" placeholder="Enter your Last Name">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </fieldset>
+    <br />
+
+    <h3>CONTACT INFORMATION</h3>
+    <fieldset>
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Phone Number:</label>
+            <input class="form-control" asp-for="PhoneNumber" placeholder="Enter your phone Number">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+       
+        <br />
+        <div>
+            <label>Type of Phone Number: </label><span></span>
+
+            <label class="form-check-inline">
+                <input type="checkbox" class="form-check-input">
+                Mobile
+            </label>
+
+            <label class="form-check-inline">
+                <input type="checkbox" class="form-check-input">
+                Work
+            </label>
+
+            <label class="form-check-inline">
+                <input type="checkbox" class="form-check-input">
+                Home
+            </label>
+
+        </div>
+    </fieldset>
+    <br />
+
+    <h3>AUTHENTICATION</h3>
+    <fieldset>
+        <div class="form-group">
+            <label asp-for="Password">Password :</label>
+            <input class="form-control" asp-for="Password" placeholder="Enter your password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PasswordConfirmation"> ConfirmPassword :</label>
+            <input class="form-control" asp-for="PasswordConfirmation" placeholder="Confirm your password">
+            <span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+        </div>
+    </fieldset>
+
+    <br />
+
+
+    <h3>FUNDS TO DEPOSIT FOR SHOPPING</h3>
+    <div>
+        <label asp-for="UserFunds"></label>
+        <input asp-for="UserFunds" />
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input">
+        <label class="form-check-label">I am not a robot.</label>
+    </div>
+    <br />
+
+    <button class="btn btn-dark">Submit</button>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
