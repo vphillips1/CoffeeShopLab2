@@ -5,20 +5,25 @@ using System.Threading.Tasks;
 using CoffeeShopLab2.DALModels;
 using CoffeeShopLab2.Models.CoffeeShop;
 using CoffeeShopLab2.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeShopLab2.Controllers
 {
+
+    [Authorize]
     public class CoffeeShopController : Controller
     {
-
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly ILoggedUser _loggedUser;
         private readonly ShopDBContext _shopDBContext;
         private readonly IUserItems _userItem;
 
-        public CoffeeShopController(ILoggedUser loggedUser, ShopDBContext shopDBContext, IUserItems userItem)
+        public CoffeeShopController(ILoggedUser loggedUser, ShopDBContext shopDBContext, IUserItems userItem, UserManager<IdentityUser> userManager)
         {
 
+            _userManager = userManager;
             _loggedUser = loggedUser;
 
             _shopDBContext = shopDBContext;
@@ -49,9 +54,9 @@ namespace CoffeeShopLab2.Controllers
             var user = new UsersDAL();
             
             
-            if (ModelState.IsValid)
+            
 
-            {
+            
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
                 user.Email = model.Email;
@@ -97,9 +102,9 @@ namespace CoffeeShopLab2.Controllers
                 return View("FormResult", viewModel);
 
 
-            }
+            
 
-            return View("Error");
+           
         }
 
 
@@ -130,7 +135,7 @@ namespace CoffeeShopLab2.Controllers
             _loggedUser.loggedIn = true;
 
 
-            return View(/*"SuccessfulLogIn"*/);
+            return View("SuccessfulLogIn");
         }
 
 

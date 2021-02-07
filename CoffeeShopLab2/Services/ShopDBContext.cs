@@ -1,4 +1,5 @@
 ﻿using CoffeeShopLab2.DALModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeShopLab2.Services
 {
-    public class ShopDBContext : DbContext
+    public class ShopDBContext : IdentityDbContext
     {
         public ShopDBContext(DbContextOptions options) : base(options)
         {
