@@ -30,10 +30,7 @@ namespace CoffeeShopLab2.Controllers
 
             _userItem = userItem;
 
-
-
         }
-
 
         public IActionResult Index()
         {
@@ -45,7 +42,6 @@ namespace CoffeeShopLab2.Controllers
         {
             return View();
         }
-
 
         public IActionResult FormResult(AddUserFormViewModel model)
         {
